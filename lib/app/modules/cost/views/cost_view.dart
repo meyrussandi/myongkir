@@ -13,6 +13,19 @@ class CostView extends GetView<CostController> {
   final Courier courierModel = Get.arguments['couriers'];
   final double weight = Get.arguments['weight'];
 
+  String _getImage(String courierCode) {
+    switch (courierCode) {
+      case "jne":
+        return "assets/icons/jne.png";
+      case "tiki":
+        return "assets/icons/tiki.png";
+      case "pos":
+        return "assets/icons/pos.png";
+      default:
+        return "assets/icons/courier.png";
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     print(Get.arguments['origin_details']);
@@ -37,7 +50,7 @@ class CostView extends GetView<CostController> {
                           colorFilter: ColorFilter.mode(
                               Colors.black.withOpacity(0.5), BlendMode.dstOut),
                           image: AssetImage(
-                            "assets/icons/jne.png",
+                            _getImage(courierModel.code!),
                           ))),
                 ),
               ),
